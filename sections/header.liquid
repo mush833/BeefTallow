@@ -1,0 +1,92 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/header.liquid
+  Renders on: ALL pages (via layout/theme.liquid)
+  Purpose: Site header with logo, navigation links, cart icon
+  Mobile: Hamburger menu that opens a drawer nav
+-->
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+
+    <!-- Mobile Menu Toggle -->
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name }} home">
+      {{ section.settings.logo_text | default: shop.name | upcase }}
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="site-header__nav" aria-label="Main navigation">
+      <a href="{{ routes.root_url }}">Home</a>
+      <a href="/products/face-ritual-tallow-balm">Shop</a>
+      <a href="{{ routes.root_url }}#our-story">Our Story</a>
+      <a href="/pages/reviews">Reviews</a>
+      <a href="/pages/faq">FAQ</a>
+    </nav>
+
+    <!-- Icons -->
+    <div class="site-header__icons">
+      <!-- Search -->
+      <a href="{{ routes.search_url }}" aria-label="Search">
+        <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </a>
+      <!-- Cart -->
+      <a href="{{ routes.cart_url }}" aria-label="Cart ({{ cart.item_count }} items)" style="position:relative;display:flex;align-items:center;">
+        <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="site-header__cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile Nav Drawer -->
+<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <button class="nav-drawer__close" aria-label="Close menu">✕</button>
+  <div class="nav-drawer__logo">{{ shop.name | upcase }}</div>
+  <nav class="nav-drawer__links" aria-label="Mobile navigation">
+    <a href="{{ routes.root_url }}">Home</a>
+    <a href="/products/face-ritual-tallow-balm">Shop Now</a>
+    <a href="{{ routes.root_url }}#our-story">Our Story</a>
+    <a href="/pages/reviews">Reviews</a>
+    <a href="/pages/faq">FAQ</a>
+    <a href="/pages/contact">Contact</a>
+    <a href="/pages/track-order">Track Order</a>
+    <a href="/pages/shipping">Shipping & Returns</a>
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "VALLORE"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image (optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}

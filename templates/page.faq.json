@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/page.faq.json -> FAQ page. Reuses the product-faq accordion section. Assign a page this template in Shopify admin.",
+  "sections": { "main": { "type": "product-faq" } },
+  "order": ["main"]
+}

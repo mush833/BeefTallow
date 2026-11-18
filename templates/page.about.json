@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/page.about.json -> OUR STORY page. Assign a page this template in Shopify admin (Online Store > Pages).",
+  "sections": { "main": { "type": "page-about" } },
+  "order": ["main"]
+}

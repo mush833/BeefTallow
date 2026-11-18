@@ -1,0 +1,131 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/home-solution.liquid
+  Renders on: HOME PAGE ONLY (templates/index.json)
+  Purpose: "Meet Vallore™" solution section — 4 feature rows
+  Copy from site: Looks Rested / Shave Without the Sting / Replaces Five Products / A Ten-Second Habit
+-->
+
+<section class="solution section section--white" id="solution">
+  <div class="container text-center">
+    <p class="overline">{{ section.settings.eyebrow | default: 'The Solution' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'Meet Vallore™' }}</h2>
+    <p class="lead" style="margin-top:12px; opacity:0.7; max-width:600px; margin-left:auto; margin-right:auto;">
+      {{ section.settings.subheading | default: 'Whipped grass-fed beef tallow that\'s ~87% a match for the oil your skin already makes. No water filler, no synthetic fragrance, no 40-item label.' }}
+    </p>
+
+    <div class="solution__features">
+      {% for block in section.blocks %}
+        <div class="solution__feature" {{ block.shopify_attributes }}>
+          <div class="solution__feature-icon">{{ block.settings.icon | default: '✦' }}</div>
+          <div class="solution__feature-copy">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Social proof line -->
+    <div style="margin-top:48px; display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--serif); font-size:2rem; font-weight:300; color:var(--gold);">2,140+</div>
+        <div style="font-size:0.8rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.08em;">Verified Buyers</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif); font-size:2rem; font-weight:300; color:var(--gold);">4.8/5</div>
+        <div style="font-size:0.8rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.08em;">Average Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — Solution",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Solution"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Meet Vallore™"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Whipped grass-fed beef tallow that's ~87% a match for the oil your skin already makes. No water filler, no synthetic fragrance, no 40-item label."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "👁"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature title",
+          "default": "Looks Rested — Not Shiny"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Feature body",
+          "default": "Sinks in fast with no greasy film, so you look awake in every photo instead of oily."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — Solution",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "👁",
+            "title": "Looks Rested — Not Shiny",
+            "body": "Sinks in fast with no greasy film, so you look awake in every photo instead of oily."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🪒",
+            "title": "Shave Without the Sting",
+            "body": "Calms razor burn and the tight, flaky feeling after you shave. Comfortable all day."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🫙",
+            "title": "Replaces Five Products",
+            "body": "Moisturizer, aftershave, eye cream, lip balm and hand cream. One jar on the counter."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "⏱",
+            "title": "A Ten-Second Habit",
+            "body": "Warm a dab, press it in, grab your keys. A routine simple enough to actually keep."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

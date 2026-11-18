@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/page.track.json -> TRACK ORDER page. Assign a page this template in Shopify admin.",
+  "sections": { "main": { "type": "page-track" } },
+  "order": ["main"]
+}

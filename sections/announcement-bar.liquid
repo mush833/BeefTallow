@@ -1,0 +1,43 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/announcement-bar.liquid
+  Renders on: ALL pages (via layout/theme.liquid)
+  Purpose: Top announcement/ticker bar with promotional message
+  Customizable via: Shopify theme editor (Online Store > Themes > Customize)
+-->
+
+<div class="announcement-bar" role="complementary" aria-label="Announcement">
+  <p>
+    {{ section.settings.text | default: '40% OFF · FREE SHIPPING OVER $45 · EARLY BLACK FRIDAY' }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "40% OFF · FREE SHIPPING OVER $45 · EARLY BLACK FRIDAY"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#20140C"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#F3E9DB"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

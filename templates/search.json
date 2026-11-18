@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/search.json -> SEARCH PAGE.",
+  "sections": { "main": { "type": "main-search" } },
+  "order": ["main"]
+}

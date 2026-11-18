@@ -1,0 +1,140 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/home-reviews.liquid
+  Renders on: HOME PAGE ONLY (templates/index.json)
+  Purpose: Review carousel — 5 review cards with auto-scroll every 3500ms
+  Reviews: Marcus T., Devon R., James L., Rob C., Paul K.
+-->
+
+<section class="reviews-section" id="reviews">
+  <div class="reviews-section__header">
+    <p class="overline">{{ section.settings.eyebrow | default: 'Verified Reviews' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: '2,140 Men Who Finally Kept a Routine' }}</h2>
+    <div class="rating-row" style="justify-content:center; margin-top:12px;">
+      <span class="stars stars-lg">★★★★★</span>
+      <span style="font-weight:700;">4.8/5</span>
+      <span class="count">· Verified Buyers</span>
+    </div>
+  </div>
+
+  <div class="revcar" role="region" aria-label="Customer reviews">
+    <div class="revtrack">
+      {% for block in section.blocks %}
+        <div class="review-card" {{ block.shopify_attributes }}>
+          <div class="review-card__header">
+            <div class="review-card__avatar">{{ block.settings.name | slice: 0, 2 | upcase }}</div>
+            <div class="review-card__meta">
+              <div class="review-card__name">{{ block.settings.name }}</div>
+              <div class="review-card__loc">{{ block.settings.location }}</div>
+              <div class="stars" style="font-size:0.8rem;">★★★★★</div>
+            </div>
+            <span class="review-card__verified">✓ Verified</span>
+          </div>
+          <p class="review-card__body">{{ block.settings.review }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="revdots" role="tablist" aria-label="Review navigation">
+    {% for block in section.blocks %}
+      <button class="revdot{% if forloop.first %} active{% endif %}"
+              role="tab"
+              aria-label="Review {{ forloop.index }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+      </button>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Verified Reviews"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "2,140 Men Who Finally Kept a Routine"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer name",
+          "default": "Marcus T."
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Austin, TX"
+        },
+        {
+          "type": "textarea",
+          "id": "review",
+          "label": "Review text",
+          "default": "My daughter asked why I \"do the jar.\" Told her it's so I take care of myself like I take care of her. Face looks less wrecked too."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Marcus T.",
+            "location": "Austin, TX · Verified ✓",
+            "review": "My daughter asked why I \"do the jar.\" Told her it's so I take care of myself like I take care of her. Face looks less wrecked too."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Devon R.",
+            "location": "Denver, CO · Verified ✓",
+            "review": "41, work outside, hands were shot. Three weeks in and the cracked knuckles finally closed up. I'm not a skincare guy — but this I'll actually do."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "James L.",
+            "location": "Columbus, OH · Verified ✓",
+            "review": "Wife has a whole shelf. I've got one jar. And honestly mine's easier to keep up with than her ten bottles. Zero smell on the unscented, not greasy. Sold."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Rob C.",
+            "location": "Sacramento, CA · Verified ✓",
+            "review": "The one thing in my day that's mine. Ten seconds, nobody needs anything from me. Looking a bit less rough by Friday is the bonus."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Paul K.",
+            "location": "Portland, OR · Verified ✓",
+            "review": "Bought it for the dad angle. Stayed for the skin. The stool-by-the-sink thing got me. But the product's legit — my face doesn't look so tired by Friday anymore."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

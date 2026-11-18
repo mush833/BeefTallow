@@ -1,0 +1,75 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-results.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: Before / After result cards (James T., Mike R., David C.)
+-->
+
+<section class="results-section">
+  <div class="results-section__header">
+    <p class="overline">{{ section.settings.eyebrow | default: 'Real Men · Real Weeks' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'Four Weeks. Same Guy. Same Bad Lighting.' }}</h2>
+    <p class="section-sub" style="margin-top:12px;">{{ section.settings.subheading | default: 'No filters, no studio. Just the bathroom mirror and a few weeks of the ten-second habit.' }}</p>
+  </div>
+
+  <div class="results-grid">
+    {% for block in section.blocks %}
+      <div class="result-card" {{ block.shopify_attributes }}>
+        <div class="result-card__images">
+          <div class="result-card__img">
+            <span class="result-card__tag result-card__tag--before">Before</span>
+            {% if block.settings.before_image %}
+              <img src="{{ block.settings.before_image | image_url: width: 500 }}" alt="Before — {{ block.settings.name }}" loading="lazy" width="250" height="300">
+            {% else %}
+              <div class="result-card__placeholder">Before</div>
+            {% endif %}
+          </div>
+          <div class="result-card__img">
+            <span class="result-card__tag result-card__tag--after">After</span>
+            {% if block.settings.after_image %}
+              <img src="{{ block.settings.after_image | image_url: width: 500 }}" alt="After — {{ block.settings.name }}" loading="lazy" width="250" height="300">
+            {% else %}
+              <div class="result-card__placeholder">After</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="result-card__meta">
+          <strong>{{ block.settings.name }}</strong>
+          <span>{{ block.settings.caption }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Before / After",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Real Men · Real Weeks" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Four Weeks. Same Guy. Same Bad Lighting." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "No filters, no studio. Just the bathroom mirror and a few weeks of the ten-second habit." }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Result",
+      "settings": [
+        { "type": "image_picker", "id": "before_image", "label": "Before image" },
+        { "type": "image_picker", "id": "after_image", "label": "After image" },
+        { "type": "text", "id": "name", "label": "Name", "default": "James T., 38" },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "4 weeks · redness down, looks rested" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — Before / After",
+      "blocks": [
+        { "type": "result", "settings": { "name": "James T., 38", "caption": "4 weeks · redness gone, looks rested" } },
+        { "type": "result", "settings": { "name": "Mike R., 44", "caption": "6 weeks · razor rash cleared up" } },
+        { "type": "result", "settings": { "name": "David C., 35", "caption": "3 weeks · dry patches smoothed out" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

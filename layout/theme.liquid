@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+  SHOPIFY PAGE MAPPING: layout/theme.liquid
+  This is the master layout wrapper for ALL pages in the Vallore Shopify theme.
+  Every template (home, product, collection, cart, pages, etc.) renders inside this layout.
+  Shopify injects content_for_layout where the page-specific content goes.
+  Shopify injects content_for_header in the <head> for scripts/tracking.
+-->
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#20140C">
+
+  <title>
+    {%- if template == 'index' -%}
+      {{ shop.name }} — Beef Tallow for Men
+    {%- elsif page_title -%}
+      {{ page_title }} | {{ shop.name }}
+    {%- else -%}
+      {{ shop.name }}
+    {%- endif -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- else -%}
+    <meta name="description" content="Grass-fed beef tallow balm made for men. One jar, ten seconds, skin that looks rested. 60-day money-back guarantee.">
+  {%- endif -%}
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title | default: shop.name }}">
+  <meta property="og:description" content="{{ page_description | default: 'Grass-fed beef tallow balm made for men.' | escape }}">
+  {%- if product.featured_image -%}
+    <meta property="og:image" content="{{ product.featured_image | image_url: width: 1200 }}">
+  {%- endif -%}
+
+  {{ content_for_header }}
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Theme Stylesheet -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png">
+  {% endif %}
+</head>
+
+<body class="template-{{ template | replace: '.', '-' }}{% if template == 'index' %} page-home{% endif %}">
+
+  <!-- SECTION: Announcement Bar (renders on every page) -->
+  {%- section 'announcement-bar' -%}
+
+  <!-- SECTION: Site Header (renders on every page) -->
+  {%- section 'header' -%}
+
+  <!-- PAGE CONTENT: Template-specific content renders here -->
+  <main id="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- SECTION: Site Footer (renders on every page) -->
+  {%- section 'footer' -%}
+
+  <!-- SECTION: Sticky Add-to-Cart Bar (renders on product pages) -->
+  {%- if template contains 'product' -%}
+    {%- section 'sticky-atc' -%}
+  {%- endif -%}
+
+  <!-- Theme JavaScript -->
+  {{ 'theme.js' | asset_url | script_tag }}
+
+</body>
+</html>

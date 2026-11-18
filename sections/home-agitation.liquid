@@ -1,0 +1,119 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/home-agitation.liquid
+  Renders on: HOME PAGE ONLY (templates/index.json)
+  Purpose: "Sound Familiar?" pain point section — 3 cards addressing customer struggles
+  Copy from site: The 6am mirror / Last on your own list / The gray-bottle lie
+-->
+
+<section class="agitation section section--cream" id="pain-points">
+  <div class="container text-center">
+    <p class="overline">{{ section.settings.eyebrow | default: 'Sound Familiar?' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'Looking Tired Isn\'t Your Fault' }}</h2>
+    <p class="lead" style="margin-top:12px; opacity:0.7; max-width:600px; margin-left:auto; margin-right:auto;">
+      {{ section.settings.subheading | default: 'Nobody ever handed you something simple enough to keep up with. If any of these hit home — you\'re not alone.' }}
+    </p>
+
+    <div class="agitation__cards">
+      {% for block in section.blocks %}
+        <div class="agitation__card" {{ block.shopify_attributes }}>
+          <div style="font-size:1.5rem; margin-bottom:12px;">{{ block.settings.icon | default: '😶' }}</div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <p style="margin-top:40px; font-size:0.9rem; opacity:0.7; font-style:italic;">
+      {{ section.settings.close_line | default: 'Vallore™ gives your skin the fat it\'s actually missing — one jar, ten seconds, done.' }}
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — Agitation",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Sound Familiar?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Looking Tired Isn't Your Fault"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Nobody ever handed you something simple enough to keep up with. If any of these hit home — you're not alone."
+    },
+    {
+      "type": "text",
+      "id": "close_line",
+      "label": "Closing line",
+      "default": "Vallore™ gives your skin the fat it's actually missing — one jar, ten seconds, done."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pain_card",
+      "name": "Pain Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "😶"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "default": "The 6am mirror"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Card body",
+          "default": "You feel like yourself in your head — then you catch your reflection and some tired, worn-down guy is staring back."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — Agitation",
+      "blocks": [
+        {
+          "type": "pain_card",
+          "settings": {
+            "icon": "😶",
+            "title": "The 6am mirror",
+            "body": "You feel like yourself in your head — then you catch your reflection and some tired, worn-down guy is staring back."
+          }
+        },
+        {
+          "type": "pain_card",
+          "settings": {
+            "icon": "⏳",
+            "title": "Last on your own list",
+            "body": "Kids, job, house, dog. Nothing in the day is actually yours, and you quietly stopped expecting it to be."
+          }
+        },
+        {
+          "type": "pain_card",
+          "settings": {
+            "icon": "🧴",
+            "title": "The gray-bottle lie",
+            "body": "Drugstore \"men's\" lotion felt like a rental car and did nothing. So you figured this was just how a man's skin ends up."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

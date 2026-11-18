@@ -1,0 +1,32 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-final-cta.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: Bottom CTA that scrolls back to the buy box
+-->
+
+<section class="final-cta" style="background: {{ section.settings.bg_color | default: '#3A2414' }};">
+  <div class="final-cta__inner">
+    <h2 class="final-cta__title">{{ section.settings.heading | default: 'One Jar. One Habit. Ten Seconds A Day.' }}</h2>
+    <p class="final-cta__body">{{ section.settings.body | default: 'Backed by a 60-day money-back guarantee. The only thing you can lose is the tired face.' }}</p>
+    <a href="{{ section.settings.cta_url | default: '#buy' }}" class="btn btn-gold btn-lg">{{ section.settings.cta_text | default: 'Choose My Supply →' }}</a>
+    <div class="final-cta__trust">
+      <span>✓ 60-Day Guarantee</span>
+      <span>✓ Free Shipping Over $45</span>
+      <span>✓ Ships in 24h</span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Final CTA",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#3A2414" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One Jar. One Habit. Ten Seconds A Day." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Backed by a 60-day money-back guarantee. The only thing you can lose is the tired face." },
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Choose My Supply →" },
+    { "type": "url", "id": "cta_url", "label": "Button URL (defaults to #buy)" }
+  ],
+  "presets": [ { "name": "Product — Final CTA" } ]
+}
+{% endschema %}

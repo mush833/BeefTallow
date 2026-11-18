@@ -1,0 +1,169 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-hero.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: Main buy box — gallery (left) + buy column (right) with bundle tier selector,
+           star rating, bullets, Add-to-Cart form posting to Shopify /cart/add.
+  Uses the Shopify product object. Bundle tiers map to variant IDs set in the theme editor.
+-->
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<section class="pdp-hero" id="buy">
+  <div class="pdp-hero__grid">
+
+    <!-- GALLERY -->
+    <div class="pdp-gallery">
+      <div class="pdp-gallery__main">
+        {% if product.featured_image %}
+          <img id="pdpMainImage"
+               src="{{ product.featured_image | image_url: width: 900 }}"
+               alt="{{ product.featured_image.alt | escape | default: product.title }}"
+               width="600" height="600">
+        {% else %}
+          <img id="pdpMainImage" src="{{ 'product-main.jpg' | asset_url }}" alt="{{ product.title | escape }}" width="600" height="600">
+        {% endif %}
+      </div>
+      {% if product.images.size > 1 %}
+        <div class="pdp-gallery__thumbs">
+          {% for image in product.images %}
+            <button class="pdp-gallery__thumb{% if forloop.first %} active{% endif %}"
+                    data-full="{{ image | image_url: width: 900 }}"
+                    aria-label="View image {{ forloop.index }}">
+              <img src="{{ image | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- BUY COLUMN -->
+    <div class="pdp-buy">
+      <p class="overline">{{ section.settings.eyebrow | default: 'The Vallore™ Face Ritual' }}</p>
+      <h1 class="pdp-buy__title">{{ product.title | default: 'Vallore™ Tallow Face Balm' }}</h1>
+
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="rating-row__score">4.8</span>
+        <span class="count">· 2,140+ verified reviews</span>
+      </div>
+
+      <p class="pdp-buy__subtitle">{{ section.settings.subtitle | default: 'The one-step routine for men who don\'t do routines. Grass-fed tallow, raw honey, jojoba. That\'s it.' }}</p>
+
+      <ul class="pdp-buy__bullets">
+        {% for block in section.blocks %}
+          {% if block.type == 'bullet' %}
+            <li class="pdp-buy__bullet" {{ block.shopify_attributes }}>
+              <span class="pdp-buy__bullet-check">✓</span>{{ block.settings.text }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
+      <!-- BUNDLE TIERS -->
+      <form method="post" action="/cart/add" id="pdpForm" class="pdp-form" accept-charset="UTF-8" enctype="multipart/form-data">
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="id" id="pdpVariantId" value="{{ current_variant.id }}">
+
+        <p class="pdp-buy__tier-label">Choose your supply:</p>
+        <div class="bundle-tiers">
+          {% for block in section.blocks %}
+            {% if block.type == 'tier' %}
+              <label class="bundle-tier{% if block.settings.featured %} bundle-tier--featured{% endif %}"
+                     data-variant="{{ block.settings.variant_id }}"
+                     data-price="{{ block.settings.price }}"
+                     data-compare="{{ block.settings.compare_price }}"
+                     {{ block.shopify_attributes }}>
+                <input type="radio" name="tier" class="bundle-tier__radio"
+                       value="{{ block.settings.variant_id }}"
+                       {% if block.settings.featured %}checked{% endif %}>
+                <span class="bundle-tier__inner">
+                  {% if block.settings.badge != blank %}
+                    <span class="bundle-tier__badge">{{ block.settings.badge }}</span>
+                  {% endif %}
+                  <span class="bundle-tier__dot" aria-hidden="true"></span>
+                  <span class="bundle-tier__text">
+                    <span class="bundle-tier__name">{{ block.settings.name }}</span>
+                    <span class="bundle-tier__desc">{{ block.settings.desc }}</span>
+                  </span>
+                  <span class="bundle-tier__pricing">
+                    <span class="bundle-tier__price">${{ block.settings.price }}</span>
+                    {% if block.settings.compare_price != blank %}
+                      <span class="bundle-tier__compare">${{ block.settings.compare_price }}</span>
+                    {% endif %}
+                    {% if block.settings.save_label != blank %}
+                      <span class="bundle-tier__save">{{ block.settings.save_label }}</span>
+                    {% endif %}
+                  </span>
+                </span>
+              </label>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <button type="submit" name="add" class="btn btn-primary btn-lg btn-full pdp-buy__atc" id="pdpAtc">
+          <span class="pdp-buy__atc-text">{{ section.settings.cta_text | default: 'Add To Cart' }}</span>
+          <span class="pdp-buy__atc-price" id="pdpAtcPrice">— ${{ current_variant.price | money_without_trailing_zeros }}</span>
+        </button>
+
+        <div class="pdp-buy__reassure">
+          <span>🔒 Secure checkout</span>
+          <span>🚚 Ships in 24h</span>
+          <span>↩️ 60-day guarantee</span>
+        </div>
+      </form>
+
+      <div class="pdp-buy__payment">
+        <span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>SHOP PAY</span><span>APPLE PAY</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Hero / Buy Box",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Vallore™ Face Ritual" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The one-step routine for men who don't do routines. Grass-fed tallow, raw honey, jojoba. That's it." },
+    { "type": "text", "id": "cta_text", "label": "Add-to-cart text", "default": "Add To Cart" }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Benefit bullet",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Bullet text", "default": "Looks rested in the mirror — even on 5 hours of sleep" }
+      ]
+    },
+    {
+      "type": "tier",
+      "name": "Bundle tier",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Tier name", "default": "2 Jars" },
+        { "type": "text", "id": "desc", "label": "Description", "default": "Most popular · 60-day supply" },
+        { "type": "text", "id": "variant_id", "label": "Shopify Variant ID", "info": "Paste the variant ID this tier adds to cart" },
+        { "type": "text", "id": "price", "label": "Price (number only)", "default": "49.99" },
+        { "type": "text", "id": "compare_price", "label": "Compare-at (number only)", "default": "98" },
+        { "type": "text", "id": "badge", "label": "Top badge", "default": "MOST POPULAR" },
+        { "type": "text", "id": "save_label", "label": "Save label", "default": "Save 50%" },
+        { "type": "checkbox", "id": "featured", "label": "Pre-selected / featured", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — Hero / Buy Box",
+      "blocks": [
+        { "type": "bullet", "settings": { "text": "Looks rested in the mirror — even on 5 hours of sleep" } },
+        { "type": "bullet", "settings": { "text": "Shave without the sting, burn, or razor rash" } },
+        { "type": "bullet", "settings": { "text": "Replaces 5 bathroom products with one jar" } },
+        { "type": "bullet", "settings": { "text": "Ten-second habit you'll actually keep" } },
+        { "type": "tier", "settings": { "name": "1 Jar", "desc": "Try it · 30-day supply", "price": "34", "compare_price": "49", "badge": "", "save_label": "Save 40%", "featured": false } },
+        { "type": "tier", "settings": { "name": "2 Jars", "desc": "Most popular · 60-day supply + free shipping", "price": "49.99", "compare_price": "98", "badge": "MOST POPULAR", "save_label": "Save 50%", "featured": true } },
+        { "type": "tier", "settings": { "name": "3 Jars", "desc": "Best value · 90-day supply + free shipping", "price": "59.99", "compare_price": "147", "badge": "BEST VALUE", "save_label": "Save 60%", "featured": false } }
+      ]
+    }
+  ]
+}
+{% endschema %}

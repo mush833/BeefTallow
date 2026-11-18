@@ -1,0 +1,27 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/page-about.liquid
+  Renders on: OUR STORY PAGE (templates/page.about.json)
+  Purpose: Brand story — why Vallore exists, in the brand voice.
+-->
+
+<section class="static-page static-page--narrow">
+  <div class="static-page__inner">
+    <p class="overline">{{ section.settings.eyebrow | default: 'Our Story' }}</p>
+    <h1 class="h2">{{ section.settings.heading | default: 'We Made The Thing We Couldn\'t Find.' }}</h1>
+    <div class="static-page__content rte">
+      {{ section.settings.body }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About / Our Story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "We Made The Thing We Couldn't Find." },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Every men's skincare aisle is either a 12-step regimen nobody keeps up, or a blue bottle that smells like a gym bag and does nothing. We wanted one jar. Real ingredients. A ten-second habit a normal guy would actually do.</p><p>So we built it around grass-fed tallow — the closest thing in nature to your own skin — with raw honey, jojoba, and vitamin E. Four ingredients. No fragrance, no fillers, no lab names.</p><p>Vallore isn't about becoming a skincare guy. It's about looking a little less wrecked in the mirror, staying in the photo, and keeping one small thing that's yours.</p>" }
+  ],
+  "presets": [ { "name": "About / Our Story" } ]
+}
+{% endschema %}

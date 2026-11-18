@@ -1,0 +1,46 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Vallore — TallowCraft",
+    "theme_version": "1.0.0",
+    "theme_author": "Vallore",
+    "theme_documentation_url": "https://tallow-craft-labs.base44.app",
+    "theme_support_url": "https://tallow-craft-labs.base44.app"
+  },
+  {
+    "name": "Brand colors",
+    "settings": [
+      { "type": "header", "content": "Core palette (matches the base44 build)" },
+      { "type": "color", "id": "color_bg", "label": "Page background (cream)", "default": "#F4ECDF" },
+      { "type": "color", "id": "color_bg2", "label": "Surface (white)", "default": "#FFFFFF" },
+      { "type": "color", "id": "color_bg3", "label": "Surface alt (light cream)", "default": "#FBF4E8" },
+      { "type": "color", "id": "color_brown", "label": "Dark brown (text/dark sections)", "default": "#20140C" },
+      { "type": "color", "id": "color_gold", "label": "Gold (primary accent)", "default": "#C2863F" },
+      { "type": "color", "id": "color_gold2", "label": "Gold light", "default": "#D7A463" },
+      { "type": "color", "id": "color_cta", "label": "CTA button background", "default": "#3A2414" },
+      { "type": "color", "id": "color_cta_text", "label": "CTA button text", "default": "#F3E9DB" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "header", "content": "Fonts (loaded from Google Fonts in layout)" },
+      { "type": "text", "id": "font_serif", "label": "Serif (headings)", "default": "Fraunces" },
+      { "type": "text", "id": "font_sans", "label": "Sans (body)", "default": "Inter" }
+    ]
+  },
+  {
+    "name": "Announcement",
+    "settings": [
+      { "type": "text", "id": "announcement_text", "label": "Announcement text", "default": "40% OFF · FREE SHIPPING OVER $45 · EARLY BLACK FRIDAY" }
+    ]
+  },
+  {
+    "name": "Social & store",
+    "settings": [
+      { "type": "text", "id": "instagram", "label": "Instagram URL" },
+      { "type": "text", "id": "tiktok", "label": "TikTok URL" },
+      { "type": "text", "id": "support_email", "label": "Support email", "default": "help@vallore.shop" }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/main-article.liquid
+  Renders on: BLOG POST PAGE (templates/article.json) — the "Blog posts" item in the theme nav
+  Purpose: Single article view. Uses the article object.
+-->
+
+<article class="article-page">
+  <div class="article-page__inner">
+    <a href="{{ blog.url }}" class="article-page__back">← {{ blog.title }}</a>
+    <h1 class="h2">{{ article.title }}</h1>
+    <div class="article-page__meta">
+      {{ article.published_at | date: '%B %d, %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}
+    </div>
+    {% if article.image %}
+      <div class="article-page__hero">
+        <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title | escape }}" width="800" height="450">
+      </div>
+    {% endif %}
+    <div class="article-page__content rte">
+      {{ article.content }}
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [],
+  "presets": [ { "name": "Article" } ]
+}
+{% endschema %}

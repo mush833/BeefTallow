@@ -1,0 +1,87 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/footer.liquid
+  Renders on: ALL pages (via layout/theme.liquid)
+  Purpose: Site footer with links, payment icons, legal disclaimer
+  Shopify page types covered: All
+-->
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+
+    <!-- Brand col -->
+    <div class="site-footer__brand">
+      <h3>{{ shop.name | upcase }}</h3>
+      <p>Grass-fed beef tallow balm made for men who want one simple thing that actually works.</p>
+    </div>
+
+    <!-- Shop links -->
+    <div class="site-footer__col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="/products/face-ritual-tallow-balm">Tallow Balm</a></li>
+        <li><a href="{{ routes.root_url }}#our-story">Our Story</a></li>
+        <li><a href="/pages/reviews">Reviews</a></li>
+        <li><a href="/pages/faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Support links -->
+    <div class="site-footer__col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="/pages/track-order">Track Order</a></li>
+        <li><a href="/pages/contact">Contact Us</a></li>
+        <li><a href="/pages/shipping">Shipping & Returns</a></li>
+        <li><a href="/pages/refund-policy">Refund Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal links -->
+    <div class="site-footer__col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="{{ shop.privacy_policy.url }}">Privacy Policy</a></li>
+        <li><a href="{{ shop.terms_of_service.url }}">Terms of Service</a></li>
+        <li><a href="{{ shop.refund_policy.url }}">Refund Policy</a></li>
+        <li><a href="{{ shop.shipping_policy.url }}">Shipping Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="container">
+    <div class="site-footer__bottom">
+      <div class="site-footer__legal">
+        <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+        <p>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      </div>
+      <div class="site-footer__payments" aria-label="Accepted payment methods">
+        <span class="payment-icon">VISA</span>
+        <span class="payment-icon">MC</span>
+        <span class="payment-icon">AMEX</span>
+        <span class="payment-icon">APPLE PAY</span>
+        <span class="payment-icon">SHOP PAY</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "brand_description",
+      "label": "Brand description",
+      "default": "<p>Grass-fed beef tallow balm made for men who want one simple thing that actually works.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

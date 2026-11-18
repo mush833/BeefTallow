@@ -1,0 +1,29 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/product.json -> PRODUCT PAGE. Full long-form sales page for the Vallore Tallow Face Balm.",
+  "sections": {
+    "product-hero": { "type": "product-hero" },
+    "product-benefit-cards": { "type": "product-benefit-cards" },
+    "product-honest-science": { "type": "product-honest-science" },
+    "product-results": { "type": "product-results" },
+    "product-how-to-use": { "type": "product-how-to-use" },
+    "product-angle-stories": { "type": "product-angle-stories" },
+    "product-comparison": { "type": "product-comparison" },
+    "product-reviews": { "type": "product-reviews" },
+    "product-guarantee": { "type": "product-guarantee" },
+    "product-faq": { "type": "product-faq" },
+    "product-final-cta": { "type": "product-final-cta" }
+  },
+  "order": [
+    "product-hero",
+    "product-benefit-cards",
+    "product-honest-science",
+    "product-results",
+    "product-how-to-use",
+    "product-angle-stories",
+    "product-comparison",
+    "product-reviews",
+    "product-guarantee",
+    "product-faq",
+    "product-final-cta"
+  ]
+}

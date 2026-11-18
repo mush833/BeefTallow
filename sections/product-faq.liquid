@@ -1,0 +1,61 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-faq.liquid
+  Renders on: PRODUCT PAGE (templates/product.json) — also reusable on page.faq.json
+  Purpose: FAQ accordion (8 items). Toggled by theme.js initFAQ().
+-->
+
+<section class="faq-section" id="faq">
+  <div class="faq-section__header">
+    <p class="overline">{{ section.settings.eyebrow | default: 'Straight Answers' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'The Questions Guys Actually Ask' }}</h2>
+  </div>
+
+  <div class="faq-list">
+    {% for block in section.blocks %}
+      <div class="faq-item" {{ block.shopify_attributes }}>
+        <button class="faq-trigger" aria-expanded="false">
+          <span>{{ block.settings.question }}</span>
+          <span class="faq-trigger__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body__inner">{{ block.settings.answer }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Straight Answers" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Questions Guys Actually Ask" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Does it smell?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>The unscented jar has basically no smell — a faint natural note that's gone in a minute. No cologne, no fragrance, nothing anyone will notice.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Does it smell like beef?", "answer": "<p>No. The unscented jar has a faint natural note that disappears within a minute of putting it on. No cologne, no fragrance, nothing anyone will notice across the dinner table.</p>" } },
+        { "type": "faq", "settings": { "question": "Is it greasy?", "answer": "<p>It goes on like an oil and absorbs in about 30 seconds because tallow matches your skin's own oils. A few seconds after you press it in, your face feels normal — not shiny, not slick.</p>" } },
+        { "type": "faq", "settings": { "question": "I have oily skin. Won't this make it worse?", "answer": "<p>Opposite. The jojoba oil tells your skin to stop overproducing. Guys with oily and combination skin are usually the ones who notice the biggest difference.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does a jar last?", "answer": "<p>About a month with daily use, because you only need a fingertip amount. The 2- and 3-jar bundles are just about never running out and locking in the lower price.</p>" } },
+        { "type": "faq", "settings": { "question": "Can I use it after shaving?", "answer": "<p>That's one of the best times. It calms razor burn and rash instead of stinging like an alcohol aftershave. Press a little in right after you rinse.</p>" } },
+        { "type": "faq", "settings": { "question": "What's actually in it?", "answer": "<p>Four things: grass-fed beef tallow, raw manuka honey, jojoba oil, and vitamin E. That's the entire list. No fillers, no fragrance, no lab names you can't pronounce.</p>" } },
+        { "type": "faq", "settings": { "question": "How fast will I see a difference?", "answer": "<p>Most guys notice skin feels less tight and dry within a few days. The 'you look rested' comments tend to land around the three-to-four-week mark.</p>" } },
+        { "type": "faq", "settings": { "question": "What if it doesn't work for me?", "answer": "<p>Email us within 60 days for a full refund — even if the jar's empty. You use it, and if it's not for you, the risk is on us, not you.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

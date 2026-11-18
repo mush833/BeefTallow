@@ -1,0 +1,33 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/page-track.liquid
+  Renders on: TRACK ORDER PAGE (templates/page.track.json)
+  Purpose: Simple order-status lookup pointing to Shopify's order status / contact.
+-->
+
+<section class="static-page static-page--narrow">
+  <div class="static-page__inner">
+    <h1 class="h2">{{ section.settings.heading | default: 'Track Your Order' }}</h1>
+    <p class="static-page__lead">{{ section.settings.body | default: 'Enter the email you ordered with. Your confirmation email also has a live tracking link the moment your jar ships.' }}</p>
+
+    <form action="{{ routes.account_url }}" method="get" class="contact-form">
+      <label>
+        <span>Order email</span>
+        <input type="email" name="email" placeholder="you@email.com" required>
+      </label>
+      <button type="submit" class="btn btn-primary btn-lg">Find My Order →</button>
+    </form>
+
+    <p class="static-page__help">Can't find it? <a href="/pages/contact">Email us</a> and we'll track it down for you.</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Track Order",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Track Your Order" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Enter the email you ordered with. Your confirmation email also has a live tracking link the moment your jar ships." }
+  ],
+  "presets": [ { "name": "Track Order" } ]
+}
+{% endschema %}

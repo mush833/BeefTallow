@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/cart.json -> CART PAGE.",
+  "sections": { "main": { "type": "main-cart" } },
+  "order": ["main"]
+}

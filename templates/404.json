@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/404.json -> 404 NOT FOUND page.",
+  "sections": { "main": { "type": "main-404" } },
+  "order": ["main"]
+}

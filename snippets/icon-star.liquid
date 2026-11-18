@@ -1,0 +1,10 @@
+{%- comment -%}
+  SHOPIFY SNIPPET: snippets/icon-star.liquid
+  Reusable 5-star rating row.
+  Usage: {% render 'icon-star', rating: '4.8', count: '2,140+' %}
+{%- endcomment -%}
+<span class="rating-row">
+  <span class="stars" aria-hidden="true">★★★★★</span>
+  {%- if rating -%}<span class="rating-row__score">{{ rating }}</span>{%- endif -%}
+  {%- if count -%}<span class="count">· {{ count }} reviews</span>{%- endif -%}
+</span>

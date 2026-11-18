@@ -1,0 +1,58 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-angle-stories.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: The 3 emotional brand-angle stories on the product page.
+           Alternating image/text layout. Angles: Stool by the Sink, Behind the Camera, Her Shelf / One Jar.
+-->
+
+<section class="angle-stories" id="story">
+  {% for block in section.blocks %}
+    <div class="angle-story{% if forloop.index0 | modulo: 2 == 1 %} angle-story--reverse{% endif %}" {{ block.shopify_attributes }}>
+      <div class="angle-story__media">
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.heading | escape }}" loading="lazy" width="520" height="520">
+        {% else %}
+          <div class="angle-story__placeholder">{{ block.settings.heading }}</div>
+        {% endif %}
+      </div>
+      <div class="angle-story__copy">
+        <p class="overline">{{ block.settings.eyebrow }}</p>
+        <h2 class="angle-story__heading">{{ block.settings.heading }}</h2>
+        <div class="angle-story__body">{{ block.settings.body }}</div>
+        {% if block.settings.cta_text != blank %}
+          <a href="{{ block.settings.cta_url | default: '#buy' }}" class="btn btn-outline">{{ block.settings.cta_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Product — Angle Stories",
+  "blocks": [
+    {
+      "type": "angle",
+      "name": "Angle story",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Stool By The Sink" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Your Kid Is Watching How You Treat Yourself" },
+        { "type": "richtext", "id": "body", "label": "Body", "default": "<p>She sees you do the jar every morning. Ten seconds. And one day she asks why — and you get to say: because I take care of myself, same as I take care of you.</p>" },
+        { "type": "text", "id": "cta_text", "label": "Button text", "default": "Start The Habit →" },
+        { "type": "url", "id": "cta_url", "label": "Button URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — Angle Stories",
+      "blocks": [
+        { "type": "angle", "settings": { "eyebrow": "The Stool By The Sink", "heading": "Your Kid Is Watching How You Treat Yourself", "body": "<p>She drags the stool over to watch you shave. She sees you do the jar every morning — ten seconds, same spot. And one day she asks why, and you get to say: because I take care of myself, same as I take care of you.</p><p>That's the real product. The face looking less wrecked is just the bonus.</p>", "cta_text": "Start The Habit →" } },
+        { "type": "angle", "settings": { "eyebrow": "Behind The Camera", "heading": "Stop Being The One Who Always Offers To Take The Photo", "body": "<p>You know the move. Someone raises a phone and you find a reason to be the one holding it. You edit yourself out of your own kid's birthday.</p><p>A few weeks in, the flinch is gone. You look rested enough that staying in the shot stops being a decision. You just stand there and let it happen.</p>", "cta_text": "Stay In The Picture →" } },
+        { "type": "angle", "settings": { "eyebrow": "One Jar", "heading": "She Has A Whole Shelf. You Have One Jar. Yours Is Easier To Keep.", "body": "<p>Ten bottles, an order of operations, a timer. That's her routine, and it's great — for her. You were never going to do that.</p><p>One jar. Ten seconds. The one thing in your day that's yours, that nobody needs anything from you for. Turns out that's the routine that actually sticks.</p>", "cta_text": "Get Your Jar →" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

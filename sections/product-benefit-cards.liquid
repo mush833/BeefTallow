@@ -1,0 +1,55 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-benefit-cards.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: 3 outcome/feeling benefit cards (the feeling of the result, mapped to the 3 brand angles)
+-->
+
+<section class="benefit-cards-section">
+  <div class="benefit-cards-section__header">
+    <p class="overline">{{ section.settings.eyebrow | default: 'What Actually Changes' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'It\'s Not About Skincare. It\'s About How Monday Feels.' }}</h2>
+  </div>
+
+  <div class="benefit-cards">
+    {% for block in section.blocks %}
+      <div class="benefit-card" {{ block.shopify_attributes }}>
+        <div class="benefit-card__icon">{{ block.settings.icon }}</div>
+        <h3 class="benefit-card__title">{{ block.settings.title }}</h3>
+        <p class="benefit-card__outcome">{{ block.settings.outcome }}</p>
+        <p class="benefit-card__body">{{ block.settings.body }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Benefit Cards",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What Actually Changes" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "It's Not About Skincare. It's About How Monday Feels." }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon", "default": "🪞" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Walk Past The Mirror Without Flinching" },
+        { "type": "text", "id": "outcome", "label": "Outcome line (bold)", "default": "The 6am glance stops being a gut-punch." },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "That tired, grey, 'who is that' face softens. You look like you slept — even when you didn't. You start the day already ahead instead of already behind." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — Benefit Cards",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "🪞", "title": "Walk Past The Mirror Without Flinching", "outcome": "The 6am glance stops being a gut-punch.", "body": "That tired, grey, 'who is that' face softens. You look like you slept — even when you didn't. You start the day already ahead instead of already behind." } },
+        { "type": "benefit", "settings": { "icon": "📸", "title": "Stop Being The One Dodging The Camera", "outcome": "You stay in the photo instead of offering to take it.", "body": "The flinch when someone raises a phone — gone. You stop editing yourself out of your own kid's birthday pictures. You just stand there and let it happen." } },
+        { "type": "benefit", "settings": { "icon": "🫙", "title": "One Jar That's Actually Yours", "outcome": "Ten seconds a day that nobody needs anything from you for.", "body": "Not her ten-step shelf. Not a chore. One small thing you do for yourself that happens to make your face look less wrecked by Friday. That part's the bonus." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

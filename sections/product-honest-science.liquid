@@ -1,0 +1,55 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-honest-science.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: "Why It Works" — plain-English mechanism, no hype
+-->
+
+<section class="science-section" style="background: {{ section.settings.bg_color | default: '#FBF4E8' }};">
+  <div class="science-section__inner">
+    <p class="overline">{{ section.settings.eyebrow | default: 'Why It Works' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'Your Skin Already Knows What Tallow Is.' }}</h2>
+    <p class="science-section__lead">{{ section.settings.lead | default: 'Tallow is the closest thing in nature to the oils your own skin makes. That\'s not marketing — it\'s why it sinks in instead of sitting on top like a drugstore lotion. No barrier, no grease, no 14-ingredient mystery.' }}</p>
+
+    <div class="science-grid">
+      {% for block in section.blocks %}
+        <div class="science-card" {{ block.shopify_attributes }}>
+          <div class="science-card__num">{{ forloop.index }}</div>
+          <h3 class="science-card__title">{{ block.settings.title }}</h3>
+          <p class="science-card__body">{{ block.settings.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Why It Works",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FBF4E8" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why It Works" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your Skin Already Knows What Tallow Is." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "Tallow is the closest thing in nature to the oils your own skin makes. That's why it sinks in instead of sitting on top." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "It matches your skin" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "The fatty acids in grass-fed tallow are nearly identical to the ones in human skin. Your face recognizes it and absorbs it fast." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — Why It Works",
+      "blocks": [
+        { "type": "point", "settings": { "title": "It matches your skin", "body": "The fatty acids in grass-fed tallow are nearly identical to the ones in human skin. Your face recognizes it and absorbs it fast — no greasy film left behind." } },
+        { "type": "point", "settings": { "title": "It repairs overnight", "body": "Raw manuka honey calms inflammation and helps skin recover while you sleep. That's the 'less angry by morning' effect guys keep mentioning." } },
+        { "type": "point", "settings": { "title": "It balances oil", "body": "Jojoba oil signals your skin to stop overproducing. Shiny forehead, dry cheeks — it fixes both from the same jar." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

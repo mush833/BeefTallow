@@ -1,0 +1,54 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-how-to-use.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: "How To Use" — 4 numbered steps
+-->
+
+<section class="steps-section" style="background: {{ section.settings.bg_color | default: '#20140C' }};">
+  <div class="steps-section__inner">
+    <p class="overline" style="color: var(--gold2);">{{ section.settings.eyebrow | default: 'The Whole Routine' }}</p>
+    <h2 class="steps-section__title">{{ section.settings.heading | default: 'Ten Seconds. That\'s The Instructions.' }}</h2>
+
+    <div class="steps-grid">
+      {% for block in section.blocks %}
+        <div class="step-card" {{ block.shopify_attributes }}>
+          <div class="step-card__num">{{ forloop.index }}</div>
+          <h3 class="step-card__title">{{ block.settings.title }}</h3>
+          <p class="step-card__body">{{ block.settings.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — How To Use",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#20140C" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Whole Routine" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ten Seconds. That's The Instructions." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Scoop a little" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Fingertip amount. A jar lasts a month because you need almost nothing." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — How To Use",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Scoop a little", "body": "Fingertip amount. A jar lasts a month because you barely need any." } },
+        { "type": "step", "settings": { "title": "Warm it", "body": "Rub between your fingers for a second. It melts into an oil instantly." } },
+        { "type": "step", "settings": { "title": "Press it in", "body": "Face and neck, after you wash. Morning, night, or both. No rules." } },
+        { "type": "step", "settings": { "title": "That's it", "body": "No toner, no serum, no second bottle. Walk away. You're done." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

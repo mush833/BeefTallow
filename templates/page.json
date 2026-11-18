@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/page.json -> DEFAULT PAGE template (the 'Pages' item). Renders any page's title + content.",
+  "sections": { "main": { "type": "main-page" } },
+  "order": ["main"]
+}

@@ -1,0 +1,23 @@
+{
+  "current": {
+    "color_bg": "#F4ECDF",
+    "color_bg2": "#FFFFFF",
+    "color_bg3": "#FBF4E8",
+    "color_brown": "#20140C",
+    "color_gold": "#C2863F",
+    "color_gold2": "#D7A463",
+    "color_cta": "#3A2414",
+    "color_cta_text": "#F3E9DB",
+    "font_serif": "Fraunces",
+    "font_sans": "Inter",
+    "announcement_text": "40% OFF · FREE SHIPPING OVER $45 · EARLY BLACK FRIDAY",
+    "support_email": "help@vallore.shop"
+  },
+  "presets": {
+    "Vallore — TallowCraft": {
+      "color_bg": "#F4ECDF",
+      "color_brown": "#20140C",
+      "color_gold": "#C2863F"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/article.json -> BLOG POST page.",
+  "sections": { "main": { "type": "main-article" } },
+  "order": ["main"]
+}

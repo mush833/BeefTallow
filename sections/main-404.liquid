@@ -1,0 +1,24 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/main-404.liquid
+  Renders on: 404 PAGE (templates/404.json)
+  Purpose: Friendly not-found page with a route back to the product.
+-->
+
+<section class="static-page static-page--center">
+  <div class="static-page__inner">
+    <h1 class="h2">{{ section.settings.heading | default: 'This Page Wandered Off' }}</h1>
+    <p>{{ section.settings.body | default: 'The link\'s broken or the page moved. The jar, though, is right where you left it.' }}</p>
+    <a href="/products/face-ritual-tallow-balm" class="btn btn-primary btn-lg">Back To The Face Balm →</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "This Page Wandered Off" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "The link's broken or the page moved. The jar, though, is right where you left it." }
+  ],
+  "presets": [ { "name": "404" } ]
+}
+{% endschema %}

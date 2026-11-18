@@ -1,0 +1,27 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-guarantee.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: 60-day money-back guarantee band
+-->
+
+<section class="guarantee-section">
+  <div class="guarantee-box">
+    <div class="guarantee-box__badge">{{ section.settings.badge | default: '60' }}<small>DAY</small></div>
+    <div class="guarantee-box__copy">
+      <h2 class="guarantee-box__title">{{ section.settings.heading | default: 'Use The Whole Jar. Still Not Impressed? Full Refund.' }}</h2>
+      <p class="guarantee-box__body">{{ section.settings.body | default: 'Try it for 60 days. Use every last scoop. If your face doesn\'t look better and your mornings don\'t feel easier, email us and we\'ll refund you — jar empty or not. The risk is entirely ours.' }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Guarantee",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge number", "default": "60" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Use The Whole Jar. Still Not Impressed? Full Refund." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Try it for 60 days. Use every last scoop. If your face doesn't look better, we'll refund you — jar empty or not. The risk is entirely ours." }
+  ],
+  "presets": [ { "name": "Product — Guarantee" } ]
+}
+{% endschema %}

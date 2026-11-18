@@ -1,0 +1,34 @@
+<!doctype html>
+{%- comment -%}
+  SHOPIFY PAGE MAPPING: templates/gift_card.liquid -> GIFT CARD page (standalone printable page).
+{%- endcomment -%}
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ shop.name }} — Gift Card</title>
+  {{ content_for_header }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+</head>
+<body class="template-gift-card">
+  <div class="giftcard">
+    <div class="giftcard__card">
+      <div class="giftcard__brand">{{ shop.name }}</div>
+      <p class="giftcard__label">Gift Card</p>
+      <div class="giftcard__value">{{ gift_card.initial_value | money }}</div>
+      <div class="giftcard__qr">
+        {{ gift_card.qr_identifier }}
+      </div>
+      <div class="giftcard__code">
+        <span>{{ gift_card.code | format_code }}</span>
+      </div>
+      {% if gift_card.expired %}
+        <p class="giftcard__expired">This gift card has expired.</p>
+      {% endif %}
+      <a href="{{ shop.url }}" class="btn btn-primary btn-lg">Use It On A Jar →</a>
+    </div>
+  </div>
+</body>
+</html>

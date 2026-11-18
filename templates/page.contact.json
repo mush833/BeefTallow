@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/page.contact.json -> CONTACT page. Assign a page this template in Shopify admin.",
+  "sections": { "main": { "type": "page-contact" } },
+  "order": ["main"]
+}

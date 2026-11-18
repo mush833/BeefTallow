@@ -1,0 +1,37 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/sticky-atc.liquid
+  Renders on: PRODUCT PAGE ONLY (included from layout/theme.liquid when template == 'product')
+  Purpose: Sticky add-to-cart bar that appears once the main buy box scrolls out of view.
+           Shown/hidden by theme.js initStickyATC() (IntersectionObserver on .pdp-buy).
+-->
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="sticky-atc" id="stickyAtc" aria-hidden="true">
+  <div class="sticky-atc__inner">
+    <div class="sticky-atc__info">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.title | escape }}" width="48" height="48">
+      {% endif %}
+      <div class="sticky-atc__text">
+        <strong>{{ product.title | default: 'Vallore™ Tallow Face Balm' }}</strong>
+        <span class="stars" style="font-size:0.75rem;">★★★★★ <span class="count">4.8</span></span>
+      </div>
+    </div>
+    <div class="sticky-atc__action">
+      <span class="sticky-atc__price" id="stickyPrice">${{ current_variant.price | money_without_trailing_zeros }}</span>
+      <button type="button" class="btn btn-primary" id="stickyAtcBtn" data-scroll="#buy">
+        {{ section.settings.cta_text | default: 'Add To Cart' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky Add-To-Cart",
+  "settings": [
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Add To Cart" }
+  ]
+}
+{% endschema %}

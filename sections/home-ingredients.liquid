@@ -1,0 +1,63 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/home-ingredients.liquid
+  Renders on: HOME PAGE (templates/index.json)
+  Purpose: "What's Inside" — 4 ingredient cards (Grass-Fed Tallow, Raw Manuka Honey, Jojoba Oil, Vitamin E)
+-->
+
+<section class="ingredients-section" id="ingredients">
+  <div class="ingredients-section__header">
+    <p class="overline">{{ section.settings.eyebrow | default: 'What\'s Inside' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'Four Ingredients. That\'s The Whole List.' }}</h2>
+    <p class="section-sub" style="margin-top:12px;">{{ section.settings.subheading | default: 'No fillers. No fragrance you can\'t pronounce. No 14-syllable lab names. If you can\'t say it, it\'s not in the jar.' }}</p>
+  </div>
+
+  <div class="ingredient-grid">
+    {% for block in section.blocks %}
+      <div class="ingredient-card" {{ block.shopify_attributes }}>
+        {% if block.settings.image %}
+          <div class="ingredient-card__img">
+            <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="200" height="200">
+          </div>
+        {% else %}
+          <div class="ingredient-card__icon">{{ block.settings.icon | default: '🫙' }}</div>
+        {% endif %}
+        <h3 class="ingredient-card__title">{{ block.settings.title }}</h3>
+        <p class="ingredient-card__body">{{ block.settings.body }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — Ingredients",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What's Inside" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Four Ingredients. That's The Whole List." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "No fillers. No fragrance you can't pronounce. If you can't say it, it's not in the jar." }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji icon (if no image)", "default": "🫙" },
+        { "type": "image_picker", "id": "image", "label": "Ingredient image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Grass-Fed Beef Tallow" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Closest thing in nature to your skin's own oils. Absorbs fast, no grease. The base of the whole jar." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — Ingredients",
+      "blocks": [
+        { "type": "ingredient", "settings": { "icon": "🐄", "title": "Grass-Fed Beef Tallow", "body": "Closest thing in nature to your skin's own oils. Absorbs fast, leaves no grease. This is the base of the whole jar." } },
+        { "type": "ingredient", "settings": { "icon": "🍯", "title": "Raw Manuka Honey", "body": "Calms redness and helps skin recover overnight. The reason your face looks less angry by morning." } },
+        { "type": "ingredient", "settings": { "icon": "🌿", "title": "Jojoba Oil", "body": "Tells your skin to stop overproducing oil. Fixes the shiny-forehead-but-dry-cheeks problem at the source." } },
+        { "type": "ingredient", "settings": { "icon": "✨", "title": "Vitamin E", "body": "The natural preservative and antioxidant. Protects against the daily wear that makes skin look tired." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

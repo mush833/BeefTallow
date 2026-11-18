@@ -1,0 +1,73 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/product-comparison.liquid
+  Renders on: PRODUCT PAGE (templates/product.json)
+  Purpose: Comparison table — Drugstore vs 10-Step vs Vallore
+-->
+
+<section class="comparison-section">
+  <div class="comparison-section__header">
+    <p class="overline">{{ section.settings.eyebrow | default: 'The Honest Comparison' }}</p>
+    <h2 class="h2" style="margin-top:8px;">{{ section.settings.heading | default: 'Three Ways To Deal With Your Face' }}</h2>
+  </div>
+
+  <div class="ctbl-wrap">
+    <table class="ctbl">
+      <thead>
+        <tr>
+          <th class="ctbl__rowhead"></th>
+          <th>{{ section.settings.col1 | default: 'Drugstore Lotion' }}</th>
+          <th>{{ section.settings.col2 | default: 'Her 10-Step Shelf' }}</th>
+          <th class="ctbl__us">{{ section.settings.col3 | default: 'Vallore™' }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for block in section.blocks %}
+          <tr {{ block.shopify_attributes }}>
+            <td class="ctbl__rowhead">{{ block.settings.label }}</td>
+            <td class="ctbl__cell">{% if block.settings.col1 == 'yes' %}<span class="ctbl__yes">✓</span>{% elsif block.settings.col1 == 'no' %}<span class="ctbl__no">✕</span>{% else %}{{ block.settings.col1 }}{% endif %}</td>
+            <td class="ctbl__cell">{% if block.settings.col2 == 'yes' %}<span class="ctbl__yes">✓</span>{% elsif block.settings.col2 == 'no' %}<span class="ctbl__no">✕</span>{% else %}{{ block.settings.col2 }}{% endif %}</td>
+            <td class="ctbl__cell ctbl__us">{% if block.settings.col3 == 'yes' %}<span class="ctbl__yes">✓</span>{% elsif block.settings.col3 == 'no' %}<span class="ctbl__no">✕</span>{% else %}{{ block.settings.col3 }}{% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product — Comparison",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Honest Comparison" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Three Ways To Deal With Your Face" },
+    { "type": "text", "id": "col1", "label": "Column 1 header", "default": "Drugstore Lotion" },
+    { "type": "text", "id": "col2", "label": "Column 2 header", "default": "Her 10-Step Shelf" },
+    { "type": "text", "id": "col3", "label": "Column 3 header (yours)", "default": "Vallore™" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Row label", "default": "One simple step" },
+        { "type": "text", "id": "col1", "label": "Col 1 (yes / no / text)", "default": "yes" },
+        { "type": "text", "id": "col2", "label": "Col 2 (yes / no / text)", "default": "no" },
+        { "type": "text", "id": "col3", "label": "Col 3 (yes / no / text)", "default": "yes" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product — Comparison",
+      "blocks": [
+        { "type": "row", "settings": { "label": "One simple step", "col1": "yes", "col2": "no", "col3": "yes" } },
+        { "type": "row", "settings": { "label": "Absorbs without grease", "col1": "no", "col2": "yes", "col3": "yes" } },
+        { "type": "row", "settings": { "label": "No mystery ingredients", "col1": "no", "col2": "no", "col3": "yes" } },
+        { "type": "row", "settings": { "label": "Made for a man's skin", "col1": "no", "col2": "no", "col3": "yes" } },
+        { "type": "row", "settings": { "label": "Actually gets used daily", "col1": "no", "col2": "no", "col3": "yes" } },
+        { "type": "row", "settings": { "label": "Cost per month", "col1": "$8", "col2": "$120+", "col3": "$17" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

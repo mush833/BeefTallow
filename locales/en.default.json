@@ -1,0 +1,52 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "menu": "Menu"
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search the store…",
+      "no_results": "No results for \"{{ terms }}\". Try another word."
+    },
+    "404": {
+      "title": "This page wandered off",
+      "subtext": "The link's broken or the page moved."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "update": "Update cart",
+      "empty": "Your cart is empty",
+      "remove": "Remove"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send message",
+      "success": "Thanks — we got it. We'll reply shortly."
+    }
+  },
+  "blogs": {
+    "article": {
+      "read_more": "Read more",
+      "back_to_blog": "Back to blog"
+    }
+  }
+}

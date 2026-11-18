@@ -1,0 +1,22 @@
+<!--
+  SHOPIFY PAGE MAPPING: sections/main-page.liquid
+  Renders on: STANDARD PAGE (templates/page.json) — the default "Pages" template
+  Purpose: Renders a Shopify page's title + rich body content.
+-->
+
+<section class="static-page">
+  <div class="static-page__inner">
+    <h1 class="h2">{{ page.title }}</h1>
+    <div class="static-page__content rte">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": [],
+  "presets": [ { "name": "Page" } ]
+}
+{% endschema %}

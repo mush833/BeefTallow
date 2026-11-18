@@ -1,0 +1,5 @@
+{
+  "_comment": "SHOPIFY PAGE MAPPING: templates/list-collections.json -> COLLECTIONS LIST PAGE.",
+  "sections": { "main": { "type": "main-list-collections" } },
+  "order": ["main"]
+}
